@@ -15,6 +15,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `assets`,
+        path: `${__dirname}/content/assets`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -31,8 +38,40 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      /**
+       * First up is the WordPress source plugin that connects Gatsby
+       * to your WordPress site.
+       *
+       * visit the plugin docs to learn more
+       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+       *
+       */
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        // the only required plugin option for WordPress is the GraphQL url.
+        url:
+          process.env.WPGRAPHQL_URL ||
+          `http://www.irb.foraisa.com/graphql`,
+        includedRoutes: [
+          "/*/*/posts",
+          "/*/*/pages",
+          "/*/*/media",
+          "/*/*/menus",
+          "/*/*/team"
+        ],
+      },
+    },
+    {
+      resolve: "gatsby-source-wordpress-menus",
+      options: {
+        wordpressUrl: "http://www.irb.foraisa.com",
+        languages: ["en"],
+        enableWpml: true,
+        allowCache: true,
+        maxCacheDurationSeconds: 60 * 60 * 24
+      },
+    },
+    `gatsby-plugin-sass`,
   ],
 }
