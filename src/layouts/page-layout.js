@@ -39,7 +39,9 @@ const PageLayout = ({ children }) => {
           </ul>
         </nav>
       </header>
-      <main>{children}</main>
+      <main class="bg-gray-200">
+        <div class="container mx-auto">{children}</div>
+      </main>
     </Fragment>
   );
 };

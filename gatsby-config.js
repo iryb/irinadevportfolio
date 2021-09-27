@@ -72,6 +72,6 @@ module.exports = {
         maxCacheDurationSeconds: 60 * 60 * 24
       },
     },
-    `gatsby-plugin-sass`,
+    `gatsby-plugin-postcss`
   ],
 }
