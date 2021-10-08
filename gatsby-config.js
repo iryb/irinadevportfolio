@@ -60,6 +60,7 @@ module.exports = {
           "/*/*/menus",
           "/*/*/team"
         ],
+        useACF: true,
       },
     },
     {
