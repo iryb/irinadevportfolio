@@ -39,3 +39,36 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 }
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createProject } = actions
+
+  // query content for projects
+  const {
+    data: { allWpProject },
+  } = await graphql(`
+    query {
+      allWpProject {
+        nodes {
+          id
+          uri
+        }
+      }
+    }
+  `)
+
+  const projectTemplate = path.resolve(`./src/templates/project.js`)
+
+  allWpProject.nodes.map((project) => {
+
+    const { id, uri } = project;
+
+    return actions.createPage({
+      path: uri,
+      component: projectTemplate,
+      context: {
+        id: id
+      }
+    });
+  });
+}
