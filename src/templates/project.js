@@ -1,12 +1,14 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from 'react'
+import { graphql } from 'gatsby'
 import Image from "gatsby-image"
-import Layout from '../components/layout';
+import Layout from '../components/layout'
+import Seo from "../components/seo"
 
 const WpProjectTemplate = ({ data: { wpProject } }) => {
   const { title, content, projectFields } = wpProject;
   return (
     <Layout>
+      <Seo title={title} />
       <section className="project-hero h-40 mb-5 bg-gray-200">
         <div className="container mx-auto h-full flex flex-col justify-center items-center">
           <h1 className="page-title text-center">{title}</h1>

@@ -16,7 +16,10 @@ export default function About ({ data }) {
               heroText
               cvButtonText
               cvFile {
-                link
+                localFile {
+                  url
+                  name
+                }
               }
             }
           }
@@ -27,8 +30,8 @@ export default function About ({ data }) {
         <section className="section about" id="about">
           <h1 className="section-title">{data.wpPage.homeFields.heroTitle}</h1>
           <div className="section-text" dangerouslySetInnerHTML={{ __html: data.wpPage.homeFields.heroText }}></div>
-          <div className="flex items-center mt-5">
-            <a href={data.wpPage.homeFields.cvFile.link} download className="btn btn-main m-0 mr-4">{data.wpPage.homeFields.cvButtonText}</a>
+          <div className="sm:flex items-center mt-5">
+            <a href={data.wpPage.homeFields.cvFile.localFile.url} target="_blank" rel="noreferrer" className="btn btn-main m-0 mr-4 transition-300">{data.wpPage.homeFields.cvButtonText}</a>
             <Socials />
           </div>
         </section>

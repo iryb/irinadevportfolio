@@ -9,10 +9,6 @@ export default function CategoriesList (props) {
             key={tech.id}
             className="cat mb-0 px-1 inline-block text-center" 
             data-category={tech.slug}
-            // style={{
-            //   'borderColor' : tech.technologyFields["color"],
-            //   'color' : tech.technologyFields["color"]
-            // }}
             >
             {tech.name}
           </li>

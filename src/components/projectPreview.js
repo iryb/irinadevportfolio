@@ -46,8 +46,7 @@ export default function ProjectPreview ( props, { data }) {
                     }}
                     data-filter={props.filter}
                 >
-                  <div className="project-inner relative shadow-lg rounded-3xl z-10">
-                    {/* <h3 className="project-title">{post.title}</h3> */}
+                  <div className="project-inner transition-300 relative shadow-lg rounded-3xl z-10">
                     {post.featuredImage && (
                       <div className="post-image-container rounded-3xl">
                         <div className="project-page-link"><Link to={post.link}></Link></div>

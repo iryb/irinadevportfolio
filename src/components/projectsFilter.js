@@ -44,12 +44,8 @@ let projects = data.wpPage.homeFields.showProjects;
 let filters = data.allWpTechnology.nodes;
 let projectsTitle = data.wpPage.homeFields.projectsTitle;
 
-let initFilter = localStorage.getItem('activeFilter') ? localStorage.getItem('activeFilter') : 'all';
-const [activeFilter, setFilter] = useState(initFilter);
-// console.log(localStorage.getItem('activeFilter'));
-// console.log(typeof filters[0].slug)
+const [activeFilter, setFilter] = useState();
 
-// useEffect(() => console.log('r'));
 
 const fitlersContainerRef = useRef();
 const filtersRef = useRef();
@@ -67,21 +63,20 @@ function handleListClick(e) {
   setDropdownHeight(listHeight + 'px')
   setIsActiveList(!isActiveList)
 
-  
-  console.log('dropdownHeight=' + dropdownHeight)
-  
-  
-  //fitlersContainerRef.current.style.height = listHeight + 'px';
-  console.log(fitlersContainerRef.current.style.height)
-
   if(!e.target.classList.contains('filters-placeholder')) {
-    console.log(fitlersPlaceholderRef.current.textContent)
     fitlersPlaceholderRef.current.textContent = e.target.textContent;
     setDropdownHeight('34px')
   }
 }
 
+function handleFilterChange(filter) {
+  setFilter(filter);
+  localStorage.setItem( 'activeFilter', filter);
+}
+
 useEffect(()=> {
+  setFilter(localStorage.getItem('activeFilter') ? localStorage.getItem('activeFilter') : 'all')
+
   if(window.innerWidth > 900) {
     setDropdownHeight('auto')
   } else {
@@ -102,24 +97,17 @@ return (
           <IoMdArrowDropdown />
         </li>
         <li 
-        className={"filter" + ('all' === localStorage.getItem('activeFilter') ? " active" : "")}
+        className={"filter transition-300" + ('all' === activeFilter ? " active" : "")}
         data-filter="all"
-        onClick={() => {
-          setFilter('all');
-          localStorage.setItem( 'activeFilter', 'all');
-        }}>
+        onClick={() => handleFilterChange('all')}>
           All 
         </li>
         { filters.map( tech => {
           return <li 
-          className={"filter" + (tech.slug == localStorage.getItem('activeFilter') ? " active" : "")}
+          className={"filter transition-300" + (tech.slug == activeFilter ? " active" : "")}
           key={tech.id} 
           data-filter={tech.slug}
-          onClick={() => {
-            setFilter(tech.slug);
-            localStorage.setItem( 'activeFilter', tech.slug);
-          }}
-          >
+          onClick={() => handleFilterChange(tech.slug)}>
             {tech.name}
           </li>
         })}
@@ -130,10 +118,10 @@ return (
         let techs = post.technologies.nodes;
         let isActiveProject = '';
         let projectFilters = techs.map( tech => {
-          if( Object.values(tech).indexOf(localStorage.getItem('activeFilter')) > -1 ) {
+          if( Object.values(tech).indexOf(activeFilter) > -1 ) {
             isActiveProject = 'active';
           }
-          if(localStorage.getItem('activeFilter') === 'all') {
+          if(activeFilter === 'all') {
             isActiveProject = 'active';
           }
           return tech.slug;

@@ -44,10 +44,6 @@ const Header = ({ siteTitle }) => {
     setMenuClick(!menuClick)
   }
 
-  useEffect(() => {
-    console.log(menuClick)
-  })
-
   return (
     <header className={(menuClick ? "menu-active " : "") + ("fixed left-0 top-0 w-full bg-white md:w-28 md:h-full p-4 z-20")}>
       <div className="flex h-max justify-between items-center md:flex-col md:h-full">
