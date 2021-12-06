@@ -73,6 +73,15 @@ module.exports = {
         maxCacheDurationSeconds: 60 * 60 * 24
       },
     },
-    `gatsby-plugin-postcss`
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Rubik\:300,400,700`
+        ],
+        display: 'swap'
+      }
+    }
   ],
 }

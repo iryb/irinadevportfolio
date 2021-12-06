@@ -6,8 +6,8 @@
  import './src/styles/global.css';
  import React from 'react';
 
- import PageLayout from './src/layouts/page-layout';
+//  import PageLayout from './src/layouts/page-layout';
  
- export const wrapPageElement = ({ element }) => {
-   return <PageLayout>{element}</PageLayout>;
- };
+//  export const wrapPageElement = ({ element }) => {
+//    return <PageLayout>{element}</PageLayout>;
+//  };

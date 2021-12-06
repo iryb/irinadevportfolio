@@ -1,3 +1,233 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .btn {
+    @apply inline-block font-bold py-3 px-4 my-2 mx-2 rounded text-center;
+  }
+  .btn-main {
+    @apply bg-secondary text-white rounded-3xl py-3 px-7;
+  }
+  section {
+    @apply py-10;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-sans text-darkgray;
+  }
+  .section-title {
+    @apply mb-10;
+  }
+  p:last-child {
+    @apply mb-0;
+  }
+}
+
+body {
+  padding-top: 100px;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.transition-300 {
+  transition: all 300ms;
+}
+
+.logo:hover {
+  opacity: 0.7;
+  transition: all 300ms;
+}
+
+.menu-link:hover, .menu-link:hover svg, .social-link:hover svg {
+  color: #5E5C7F;
+  transition: all 300ms;
+}
+
+.post-image-container {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.post-image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 68, 157);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.post-image-container .gatsby-image-wrapper {
+  min-height: 400px;
+  transform: translateY(0);
+  transition: all 5000ms ease-in-out;
+}
+
+.post-image-container:hover .gatsby-image-wrapper {
+  cursor: pointer;
+  transform: translateY(calc(-100% + 400px));
+  transition: all 5000ms ease-in-out;
+}
+
+.project-page-link a {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.project-preview .gatsby-image-wrapper {
+  z-index: -1;
+}
+
+.project {
+  padding: 15px;
+  animation: hide .5s ease 0s 1 forwards;
+  transform-origin: center;
+}
+
+.project.active {
+  animation: show .5s ease 0s 1 forwards;
+  transform-origin: center;
+}
+
+.project-content .container, .project-hero .container{
+  width: 900px;
+  max-width: 100%;
+}
+
+.projects-container {
+  margin: 0 -15px;
+}
+
+.project-content h2{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.project-content a {
+  text-decoration: underline;
+  transition: all 300ms;
+}
+
+.project-link {
+  transition: all 300ms;
+}
+
+.project-content a:hover, .project-link:hover {
+  color: var(--tw-ring-color);
+  transition: all 300ms;
+}
+
+.project-content .wp-block-image {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.has-text-align-center, .has-text-align-center ~ p {
+  text-align: center;
+}
+
+@keyframes hide {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(0);
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+}
+@keyframes show {
+  0%{
+    transform: scale(0);
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@media (min-width:768px) {
+  body {
+    padding-top: 0;
+  }
+  .container {
+    width: 1400px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width:767px) {
+  .filters-container {
+    position: relative;
+    min-height: 34px;
+    height: 34px;
+    background: #fff;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    transition: height 300ms;
+  }
+  .active .filters {
+    transition: height 300ms;
+  }
+  .filters {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background: #fff;
+    transition: height 300ms;
+  }
+
+  .filter, .filters-placeholder {
+    width: 100%;
+    padding: 5px 10px;
+    margin: 0;
+  }
+
+  .filters-placeholder {
+    position: relative;
+  }
+
+  .active .filters-placeholder svg {
+    transform: rotate(180deg);
+    transition: all 300ms;
+  }
+
+  .filters-placeholder svg {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    transform-origin: 50% 50%;
+    transform: rotate(0);
+    transition: all 300ms;
+  }
+
+  .menu-active .main-menu  {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: visible;
+    transition: all 300ms;
+  }
+
+  .main-menu  {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 300ms;
+  }
+}
